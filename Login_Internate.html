@@ -93,20 +93,20 @@
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
 
-            // Vous pouvez ajouter ici la logique pour vérifier l'adresse email et le mot de passe
-            // Pour cet exemple, nous vérifions si l'utilisateur est enregistré dans le stockage local du navigateur
-            var storedUser = localStorage.getItem("user");
-            if (storedUser) {
-                var user = JSON.parse(storedUser);
-                if (user.email === email && user.password === password) {
-                    // Connexion réussie, rediriger vers la page de bienvenue
-                    window.location.href = "welcome.html";
-                } else {
-                    // Afficher un message d'erreur si l'utilisateur n'est pas trouvé ou si le mot de passe est incorrect
-                    document.getElementById("errorMessage").style.display = "block";
-                }
+            // Récupérer les utilisateurs enregistrés depuis le stockage local
+            var storedUsers = localStorage.getItem("users");
+            var users = storedUsers ? JSON.parse(storedUsers) : [];
+
+            // Vérifier si l'utilisateur existe dans la liste des utilisateurs enregistrés
+            var foundUser = users.find(function(user) {
+                return user.email === email && user.password === password;
+            });
+
+            if (foundUser) {
+                // Connexion réussie, rediriger vers la page connected.html
+                window.location.href = "connected.html";
             } else {
-                // Afficher un message d'erreur si l'utilisateur n'est pas trouvé
+                // Afficher un message d'erreur si l'utilisateur n'est pas trouvé ou si le mot de passe est incorrect
                 document.getElementById("errorMessage").style.display = "block";
             }
         });
