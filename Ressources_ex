@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple de ressources</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #eee;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #eee;
+        }
+
+        .resources {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resources li {
+            margin-bottom: 10px;
+        }
+
+        .resources a {
+            display: block;
+            padding: 10px;
+            background-color: #007bff;
+            color: #eee;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .resources a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exemple de ressources</h1>
+        <ul class="resources">
+            <li><a href="#">Ressource 1</a></li>
+            <li><a href="#">Ressource 2</a></li>
+            <li><a href="#">Ressource 3</a></li>
+            <li><a href="#">Ressource 4</a></li>
+            <li><a href="#">Ressource 5</a></li>
+        </ul>
+    </div>
+</body>
+</html>
