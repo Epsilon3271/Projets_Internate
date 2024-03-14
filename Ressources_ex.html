@@ -51,18 +51,36 @@
         .resources a:hover {
             background-color: #0056b3;
         }
+
+        /* Ajout de styles pour les images */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .image-container img {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Exemple de ressources</h1>
-        <ul class="resources">
-            <li><a href="#">Ressource 1</a></li>
-            <li><a href="#">Ressource 2</a></li>
-            <li><a href="#">Ressource 3</a></li>
-            <li><a href="#">Ressource 4</a></li>
-            <li><a href="#">Ressource 5</a></li>
-        </ul>
+        <h1>Nos Cours</h1>
+    </div>
+
+    <!-- Ajout de la section pour les images -->
+    <div class="container">
+        <h2>Images des cours</h2>
+        <div class="image-container">
+            <a href="lien_vers_cours_1"><img src="Logo.png" alt="Description de l'image 1"></a>
+
+            <!-- Ajoutez autant d'images que nécessaire -->
+        </div>
     </div>
 </body>
 </html>
