@@ -24,6 +24,11 @@
             padding: 20px;
             box-sizing: border-box;
             text-align: center; /* Centrage horizontal */
+            transition: background-color 1s ease; /* Animation de transition */
+        }
+
+        .container.playing {
+            background-color: #007bff; /* Couleur de fond pendant la lecture */
         }
 
         h1 {
@@ -58,7 +63,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <h1>Traducteur Morse</h1>
         <label for="inputText">Entrez le texte à traduire en morse :</label><br>
         <textarea id="inputText" rows="4" style="width: calc(100% - 24px);" placeholder="Entrez votre texte ici..." autofocus></textarea><br>
@@ -110,10 +115,12 @@
             }
 
             async function playSequence(sequence) {
+                document.getElementById('container').classList.add('playing'); // Ajoute la classe pour l'animation
                 for (const symbol of sequence) {
                     await playSymbol(symbol);
                     await new Promise(resolve => setTimeout(resolve, dotDuration));
                 }
+                document.getElementById('container').classList.remove('playing'); // Supprime la classe après la lecture
             }
 
             playSequence(morseCode);
