@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Générateur de Fréquences</title>
+    <title>Générateur de Fréquence</title>
     <style>
         body {
             margin: 0;
@@ -30,41 +30,42 @@
             color: #eee;
         }
 
-        input[type="number"],
-        input[type="submit"] {
+        input[type="number"] {
             width: 100%;
             padding: 12px;
             margin-bottom: 20px;
-            border: 1px solid #555;
+            border: none;
             border-radius: 4px;
             box-sizing: border-box;
             font-size: 16px;
-            background-color: #333;
-            color: #eee;
+            background-color: #fff; /* Fond blanc */
+            text-align: center; /* Texte centré */
         }
 
-        input[type="submit"] {
+        button {
+            width: calc(50% - 5px); /* 50% moins un petit espace pour les boutons */
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
             background-color: #007bff;
             color: #eee;
             cursor: pointer;
+            display: inline-block; /* Affiche les boutons côte à côte */
         }
 
-        input[type="submit"]:hover {
+        button:hover {
             background-color: #0056b3;
-        }
-
-        .error-message {
-            text-align: center;
-            color: #ff3333;
-            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Générateur de Fréquences</h1>
+        <h1>Générateur de Fréquence</h1>
         <p>Entrez une fréquence en Hz :</p>
-        <input type="number" id="frequencyInput" min="20" max="20000" step="1" value="440"><br/>
+        <input type="number" id="frequencyInput" min="20" max="20000" step="1" value="440">
         <button onclick="generateSound()">Générer</button>
         <button onclick="stopSound()">Arrêter</button>
     </div>
