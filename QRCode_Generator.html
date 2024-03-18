@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Générateur de QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+
+        #qrcode-container {
+            margin-top: 20px;
+        }
+
+        #url-input {
+            width: 300px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        #generate-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #qrcode {
+            margin-top: 20px;
+        }
+
+        #download-link {
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Générateur de QR Code</h1>
+    <div id="qrcode-container">
+        <input type="text" id="url-input" placeholder="Entrez votre lien ici..." autofocus>
+        <button id="generate-btn">Générer QR Code</button>
+        <div id="qrcode"></div>
+        <a id="download-link" download="qrcode.png">Télécharger le QR Code</a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        var qrcodeContainer = document.getElementById('qrcode');
+        var qrCode = new QRCode(qrcodeContainer, {
+            width: 256,
+            height: 256,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            var url = document.getElementById('url-input').value;
+            if (url) {
+                qrCode.makeCode(url);
+                setTimeout(function() {
+                    var canvas = qrcodeContainer.querySelector('canvas');
+                    var downloadLink = document.getElementById('download-link');
+                    downloadLink.href = canvas.toDataURL('image/png');
+                    downloadLink.style.display = 'block';
+                }, 300);
+            } else {
+                alert('Veuillez entrer un lien.');
+                qrcodeContainer.innerHTML = '';
+                var downloadLink = document.getElementById('download-link');
+                downloadLink.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
