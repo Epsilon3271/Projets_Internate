@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur de Fréquence</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 10px;
+    }
+</style>
+</head>
+<body>
+<h1>Générateur de Fréquence</h1>
+<p>Entrez une fréquence en Hz :</p>
+<input type="number" id="frequencyInput" min="20" max="20000" step="1" value="440">
+<button onclick="generateSound()">Générer</button>
+<button onclick="stopSound()">Arrêter</button>
+
+<script>
+    let oscillator = null;
+
+    function generateSound() {
+        const frequencyInput = document.getElementById("frequencyInput");
+        const frequency = parseInt(frequencyInput.value);
+
+        if (oscillator !== null) {
+            stopSound();
+        }
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        oscillator = audioContext.createOscillator();
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+        oscillator.connect(audioContext.destination);
+        oscillator.start();
+    }
+
+    function stopSound() {
+        if (oscillator !== null) {
+            oscillator.stop();
+            oscillator.disconnect();
+            oscillator = null;
+        }
+    }
+</script>
+</body>
+</html>
 
