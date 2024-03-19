@@ -2,8 +2,6 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="Logo_head.png">
     <title>Générateur de QR Code</title>
     <style>
         body {
@@ -12,61 +10,80 @@
             font-family: Arial, sans-serif;
             background-color: #111;
             color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
             width: 100%;
             max-width: 400px;
-            margin: 50px auto;
             background-color: #222;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             padding: 20px;
             box-sizing: border-box;
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
             margin-bottom: 30px;
             color: #eee;
         }
 
-        input[type="text"],
-        input[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 16px;
-            background-color: #ffffff; /* Fond blanc */
-            color: #222; /* Couleur du texte assombrie pour un contraste */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        #qrcode-container {
+            margin-top: 20px;
+            text-align: center; 
         }
 
-        input[type="submit"] {
+        #url-input {
+            width: calc(100% - 100px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #eee;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        #generate-btn {
+            padding: 10px 20px;
+            cursor: pointer;
             background-color: #007bff;
             color: #eee;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
         }
 
-        input[type="submit"]:hover {
+        #generate-btn:hover {
             background-color: #0056b3;
         }
 
-        #qrcode-container {
-            margin-top: 20px;
-        }
-
         #qrcode {
-            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; / Ajout de marges pour l'espace entre le bouton et le QR code */
+        }
+#download-link {
+            display: none;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
         }
 
-        #download-link {
-            margin-top: 10px;
-            display: none;
-            text-align: center;
+        #download-link:hover {
+            color: #0056b3;
+        }
+
+        canvas {
+            margin: center; 
         }
     </style>
 </head>
@@ -75,16 +92,17 @@
         <h1>Générateur de QR Code</h1>
         <div id="qrcode-container">
             <input type="text" id="url-input" placeholder="Entrez votre lien ici..." autofocus>
-            <input type="submit" id="generate-btn" value="Générer QR Code">
+            <br>
+            <button id="generate-btn">Générer QR Code</button>
+            <br>
             <div id="qrcode"></div>
+            <br>
             <a id="download-link" download="qrcode.png">Télécharger le QR Code</a>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
-        var qrcodeContainer = document.getElementById('qrcode');
-        var qrCode = new QRCode(qrcodeContainer, {
+        var qrCode = new QRCode("qrcode", {
             width: 256,
             height: 256,
             colorDark: "#000000",
@@ -97,14 +115,13 @@
             if (url) {
                 qrCode.makeCode(url);
                 setTimeout(function() {
-                    var canvas = qrcodeContainer.querySelector('canvas');
                     var downloadLink = document.getElementById('download-link');
-                    downloadLink.href = canvas.toDataURL('image/png');
+                    downloadLink.href = qrCode._el.firstChild.toDataURL('image/png');
                     downloadLink.style.display = 'block';
                 }, 300);
             } else {
                 alert('Veuillez entrer un lien.');
-                qrcodeContainer.innerHTML = '';
+                qrCode.clear();
                 var downloadLink = document.getElementById('download-link');
                 downloadLink.style.display = 'none';
             }
