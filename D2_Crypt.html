@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptage et Décryptage de Langue Codée</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007bff;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cryptage et Décryptage de Langue Codée</h1>
+        <label for="mode">Mode :</label>
+        <select id="mode">
+            <option value="decrypt">Décrypter</option>
+            <option value="encrypt">Crypter</option>
+        </select>
+        <label for="text">Texte :</label>
+        <input type="text" id="text" placeholder="Entrez le texte ici">
+        <button onclick="processText()">Exécuter</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const encryptionTable = {
+            'A': '🜁', 'B': '🜂', 'C': '🜃', 'D': '🜄', 'E': '🜅',
+            'F': '🜆', 'G': '🜇', 'H': '🜈', 'I': '🜉', 'J': '🜊',
+            'K': '🜋', 'L': '🜌', 'M': '🜍', 'N': '🜎', 'O': '🜏',
+            'P': '🜐', 'Q': '🜑', 'R': '🜒', 'S': '🜓', 'T': '🜔',
+            'U': '🜕', 'V': '🜖', 'W': '🜗', 'X': '🜘', 'Y': '🜙', 
+            'Z': '🜚', '0': '🜛', '1': '🜜', '2': '🜝', '3': '🜞',
+            '4': '🜟', '5': '🜠', '6': '🜡', '7': '🜢', '8': '🜣',
+            '9': '🜤', '!': '🜥', '?': '🜦', '.': '🜧', ',': '🜨',
+            ' ': '🜩', '@': '🜪', '#': '🜫', '$': '🜬', '%': '🜭',
+            '^': '🜮', '&': '🜯', '*': '🜰', '(': '🜱', ')': '🜲',
+            '-': '🜳', '_': '🜴', '=': '🜵', '+': '🜶', '/': '🜷',
+            '\\': '🜸', '"': '🜹', "'": '🜺', ':': '🜻', ';': '🜼'
+        };
+
+        const decryptionTable = {};
+        for (const key in encryptionTable) {
+            decryptionTable[encryptionTable[key]] = key;
+        }
+
+        function processText() {
+            const mode = document.getElementById('mode').value;
+            const text = document.getElementById('text').value;
+            let resultText = '';
+
+            if (mode === 'decrypt') {
+                for (let char of text) {
+                    resultText += decryptionTable[char] || char;
+                }
+            } else if (mode === 'encrypt') {
+                for (let char of text) {
+                    resultText += encryptionTable[char.toUpperCase()] || char;
+                }
+            }
+
+            document.getElementById('output').textContent = 'Résultat : ' + resultText;
+        }
+    </script>
+</body>
+</html>
