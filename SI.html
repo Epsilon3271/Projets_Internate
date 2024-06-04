@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Vente Futuriste</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+        }
+        .banner {
+            width: 100%;
+            height: 200px;
+            position: relative;
+        }
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .banner h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            font-size: 2.5em;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: url('https://via.placeholder.com/800x200') repeat;
+            opacity: 0.5;
+            mix-blend-mode: screen;
+        }
+        .container {
+            text-align: center;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            margin-top: 20px;
+        }
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+        .options label {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .options input {
+            margin-right: 10px;
+            accent-color: #00aced; /* Stylisation des cases à cocher en bleu */
+        }
+        .options input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+        .price {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .cart-icon {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+            background-image: url('https://via.placeholder.com/20');
+            background-size: cover;
+        }
+        .add-to-cart-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto; /* Centrer le bouton */
+        }
+        .add-to-cart-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <img src="C:\Users\shcor\Downloads\zoom-composites-carbone.jpg" alt="Bannière">
+        <h1>SPHERO BOT</h1>
+
+    </div>
+    <div class="container">
+        <img src="https://via.placeholder.com/300" alt="Produit Image" class="product-image">
+        <div class="options">
+            <label><input type="checkbox" value="100" class="option">Carbone +100€</label>
+            <label><input type="checkbox" value="75" class="option">Logiciel Amélioré +75€</label>
+            <label><input type="checkbox" value="25" class="option">Roues Huilées +25€</label>
+        </div>
+        <div class="price" id="price">Prix: 50€</div>
+        <button class="add-to-cart-btn" onclick="addToCart()">
+            Ajouter au Panier
+        </button>
+    </div>
+    <script>
+        let basePrice = 50;
+
+        function updatePrice() {
+            let options = document.querySelectorAll('.option');
+            let totalPrice = basePrice;
+            options.forEach(option => {
+                if (option.checked) {
+                    totalPrice += parseInt(option.value);
+                }
+            });
+            document.getElementById('price').innerText = 'Prix: ' + totalPrice + '€';
+        }
+
+        function addToCart() {
+            const links = [
+                "https://fr.tipeee.com/rembourser-le-prof-de-ses",
+                "https://www.youtube.com/watch?v=oHg5SJYRHA0"
+            ];
+            const randomLink = links[Math.floor(Math.random() * links.length)];
+            window.location.href = randomLink;
+        }
+
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('change', updatePrice);
+        });
+    </script>
+</body>
+</html>
