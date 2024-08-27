@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDH LOL Live Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>KDH LOL Live Counter</h2>
+    <label for="k"> K (Kills):</label>
+    <input type="number" id="k" placeholder="Entrez la valeur de K">
+    
+    <label for="d"> D (Deaths):</label>
+    <input type="number" id="d" placeholder="Entrez la valeur de D">
+    
+    <label for="a"> H (Help):</label>
+    <input type="number" id="h" placeholder="Entrez la valeur de A">
+    
+    <button onclick="calculer()">Calculer</button>
+    
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+function calculer() {
+    let k = parseFloat(document.getElementById('k').value);
+    let d = parseFloat(document.getElementById('d').value);
+    let h = parseFloat(document.getElementById('a').value);
+
+    if (d === 0) {
+        document.getElementById('result').innerText = "Erreur: D ne peut pas être 0.";
+        return;
+    }
+
+    let resultat = (k / d) + (h / d);
+    document.getElementById('result').innerText = "Le résultat est: " + resultat.toFixed(2);
+}
+</script>
+
+</body>
+</html>
