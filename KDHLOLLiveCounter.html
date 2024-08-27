@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcul K/D + A/D</title>
+    <title>KDH LOL Live Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,15 +49,15 @@
 <body>
 
 <div class="container">
-    <h2>Calculateur K/D + A/D</h2>
-    <label for="k">Entrez K:</label>
-    <input type="number" id="k" placeholder="Entrez la valeur de K">
+    <h2>KDH LOL Live Calculator</h2>
+    <label for="k">K:</label>
+    <input type="number" id="k" placeholder="K">
     
-    <label for="d">Entrez D:</label>
-    <input type="number" id="d" placeholder="Entrez la valeur de D">
+    <label for="d">D:</label>
+    <input type="number" id="d" placeholder="D">
     
-    <label for="a">Entrez A:</label>
-    <input type="number" id="a" placeholder="Entrez la valeur de H">
+    <label for="h">H:</label>
+    <input type="number" id="h" placeholder="H">
     
     <button onclick="calculer()">Calculer</button>
     
@@ -68,14 +68,14 @@
 function calculer() {
     let k = parseFloat(document.getElementById('k').value);
     let d = parseFloat(document.getElementById('d').value);
-    let a = parseFloat(document.getElementById('a').value);
+    let h = parseFloat(document.getElementById('h').value);
 
     let resultat;
 
     if (d === 0) {
-        resultat = k + a;
+        resultat = k + h;
     } else {
-        resultat = (k / d) + (a / d);
+        resultat = (k / d) + (h / d);
     }
 
     document.getElementById('result').innerText = "Le résultat est: " + resultat.toFixed(2);
