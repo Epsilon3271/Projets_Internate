@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KDH LOL Live Counter</title>
+    <title>Calcul K/D + A/D</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,15 +49,15 @@
 <body>
 
 <div class="container">
-    <h2>KDH LOL Live Counter</h2>
-    <label for="k"> K (Kills):</label>
+    <h2>Calculateur K/D + A/D</h2>
+    <label for="k">Entrez K:</label>
     <input type="number" id="k" placeholder="Entrez la valeur de K">
     
-    <label for="d"> D (Deaths):</label>
+    <label for="d">Entrez D:</label>
     <input type="number" id="d" placeholder="Entrez la valeur de D">
     
-    <label for="a"> H (Help):</label>
-    <input type="number" id="h" placeholder="Entrez la valeur de A">
+    <label for="a">Entrez A:</label>
+    <input type="number" id="a" placeholder="Entrez la valeur de A">
     
     <button onclick="calculer()">Calculer</button>
     
@@ -68,14 +68,16 @@
 function calculer() {
     let k = parseFloat(document.getElementById('k').value);
     let d = parseFloat(document.getElementById('d').value);
-    let h = parseFloat(document.getElementById('a').value);
+    let a = parseFloat(document.getElementById('a').value);
+
+    let resultat;
 
     if (d === 0) {
-        document.getElementById('result').innerText = "Erreur: D ne peut pas être 0.";
-        return;
+        resultat = k + a;
+    } else {
+        resultat = (k / d) + (a / d);
     }
 
-    let resultat = (k / d) + (h / d);
     document.getElementById('result').innerText = "Le résultat est: " + resultat.toFixed(2);
 }
 </script>
